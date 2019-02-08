@@ -43,18 +43,19 @@ socket.on('updatedata', function(data)
 });
 
 
-function drawgraph()
+function drawbarchart()
 {
-
+   
     var max = d3.max(table, function(d) { return d.float; });
     max = Math.round(max);
     max = max+(10-max%10);
    
     const margin = 60;
-    const width = 500 - 2 * margin;
+    const width = 800 - 2 * margin;
     const height = 500 - 2 * margin;
     
-    const svg = d3.select('svg');
+    const svg = d3.select('#canvas');
+    svg.selectAll("*").remove();
     const chart = svg.append('g')
     .attr('transform', `translate(${margin}, ${margin})`);
   
@@ -122,3 +123,57 @@ function drawgraph()
     
 }
 
+
+function drawpiechart()
+{
+    const width = 800;
+    const height = 600;
+    var radius = Math.min(width, height) / 2;
+    radius = radius*0.9;
+
+    document.getElementById("canvas").innerHTML="";
+
+    const color = d3.scaleOrdinal(["#0066ff", "#b3d1ff", "#003d99", "#ff8533", " #cc80ff","#8a00e6","#66ff66"]);
+
+   var svg = d3.select("#canvas")
+	.append("svg")
+	.attr("width", width)
+	.attr("height", height)
+		.append("g")
+		.attr("transform", "translate(" + width/2 + "," + height/2 +")");
+         
+
+
+
+    var pie = d3.pie()
+    .value(function(d) { return d.float; })(table);
+    
+    var arc = d3.arc()
+	.outerRadius(radius - 10)
+	.innerRadius(0);
+
+    var labelArc = d3.arc()
+    .outerRadius(radius + 30)
+    .innerRadius(radius -5);
+
+    
+    var g = svg.selectAll("arc")
+	.data(pie)
+	.enter().append("g")
+    .attr("class", "arc");
+    
+    g.append("path")
+	.attr("d", arc)
+    .style("fill", function(d) { return color(d.data.float);});
+    
+    g.append("text")
+    .attr("transform", function(d) { 
+        var midAngle = d.endAngle < Math.PI ? d.startAngle/2 + d.endAngle/2 : d.startAngle/2  + d.endAngle/2 + Math.PI ;
+        return "translate(" + labelArc.centroid(d)[0] + "," + labelArc.centroid(d)[1] + ") rotate(-90) rotate(" + (midAngle * 180/Math.PI) + ")"; })
+    .attr("dy", ".35em")
+    .attr('text-anchor','middle')
+    .text(function(d) { return d.data.date })
+    .style("font-size", "12px");
+
+
+}

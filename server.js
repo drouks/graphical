@@ -40,7 +40,7 @@ io.on('connection', function(socket) {
     console.log('datarequest');
     Random.find()
     .lean()
-    .limit(8)
+    .limit(15)
     .exec()
     .then(docs=>
       {

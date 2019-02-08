@@ -9,23 +9,31 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="scripts.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
 </head>
 
 <body>
-    <div class="separator"></div>
-    <button type="button" class="btn btn-primary" onclick="request()">Request Data</button>
-    <button type="button" class="btn btn-info" onclick="drawgraph()">Generate Graph</button>
-   
-    <div class="separator"></div>
-    <div id="actualdata" class="actualdata"></div>
-    <div id="showarea" class="showarea">
-          <svg width="500" height="600"></svg>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="separator"></div>
+                <button type="button" class="btn btn-primary" onclick="request()">Request Data</button>
+                <button type="button" class="btn btn-info" onclick="drawbarchart()">Generate Barchart</button>
+                <button type="button" class="btn btn-warning" onclick="drawpiechart()">Generate Piechart</button>
+
+                <div class="separator"></div>
+                <div id="actualdata" class="actualdata"></div>
+            </div>
+            <div class=col-sm-8>
+                <div id="showarea" class="showarea">
+                    <svg id="canvas" width="800" height="800"></svg>
+                </div>
+            </div>
+        </div>
     </div>
 
-  
 
 </body>
 
