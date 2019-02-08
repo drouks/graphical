@@ -1,0 +1,26 @@
+.separator
+{
+    margin-top: 10px;
+}
+
+
+#showarea
+{
+    padding-left: 10px;
+}
+
+#actualdata
+{
+    font-size: 10px;
+}
+
+.grid
+{
+    opacity: 0.5;
+}
+
+
+
+rect {
+    fill: #607a86;
+  }

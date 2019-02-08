@@ -5,6 +5,7 @@
 
     <title>test</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.css">
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="scripts.js"></script>
@@ -14,12 +15,17 @@
 </head>
 
 <body>
-    <button type="button" class="btn btn-primary" onclick="display()">Display</button>
+    <div class="separator"></div>
+    <button type="button" class="btn btn-primary" onclick="request()">Request Data</button>
+    <button type="button" class="btn btn-info" onclick="drawgraph()">Generate Graph</button>
+   
+    <div class="separator"></div>
+    <div id="actualdata" class="actualdata"></div>
     <div id="showarea" class="showarea">
-
-hi
+          <svg width="500" height="600"></svg>
     </div>
-    
+
+  
 
 </body>
 

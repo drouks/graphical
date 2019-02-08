@@ -40,10 +40,10 @@ io.on('connection', function(socket) {
     console.log('datarequest');
     Random.find()
     .lean()
+    .limit(8)
     .exec()
     .then(docs=>
       {
-         console.log(JSON.stringify(docs));
          socket.emit('updatedata',JSON.stringify(docs));
       })
     .catch(err=>{
